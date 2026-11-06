@@ -29,3 +29,10 @@ The trade-off: the library only resolves *within the batch you give it*. It does
 - `os.path.splitext` treats only the last dot as the extension separator, so `archive.tar.gz` becomes `archive.tar_1.gz`, not `archive_1.tar.gz`.
 - A leading-dot filename like `.bashrc` is treated as having no extension; the suffix or number is appended directly.
 - If a generated candidate already appears among the outputs (e.g. your batch contains both `a.txt` and `a_1.txt`), the resolver bumps the counter until it finds a free slot.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+

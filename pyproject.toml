@@ -1,6 +1,6 @@
 [project]
 name = "simple-filename-collision"
-version = "0.1.1"
+version = "0.1.2"
 description = "Resolves file name collisions during batch processing by keeping the first occurrence and renaming duplicates via pluggable strategies"
 requires-python = ">=3.10"
 dependencies = []
